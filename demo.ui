@@ -53,8 +53,7 @@ QFrame#drop_shadow_frame{
 blackground-color:none;
 border-radius：10px;
 border-image: url(&quot;./img/bg.png&quot;); 
-}
-</string>
+}</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::NoFrame</enum>
@@ -164,7 +163,9 @@ border-image: url(&quot;./img/bg.png&quot;);
                 </font>
                </property>
                <property name="styleSheet">
-                <string notr="true">color: rgb(57, 57, 57);padding-left:15px;</string>
+                <string notr="true">QLabel#label_title{
+color: rgb(57, 57, 57);
+padding-left:15px;}</string>
                </property>
                <property name="text">
                 <string>Blender Launcher</string>
@@ -1247,7 +1248,7 @@ background-color:rgb(255, 220, 0);
                 </font>
                </property>
                <property name="styleSheet">
-                <string notr="true">color:rgb(170, 170, 170);</string>
+                <string notr="true">QLabel#label_credits{color:rgb(170, 170, 170);}</string>
                </property>
                <property name="text">
                 <string>By Atticus_Id</string>

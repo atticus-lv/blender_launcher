@@ -1,5 +1,6 @@
 import sys
 import platform
+import PyQt5
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTime, QMetaObject, QObject, QPoint, QRect,
@@ -60,10 +61,23 @@ class MainWindow(QMainWindow):
         ## set combobox changes event
         self.ui.comboBox_bl_version.currentTextChanged.connect(lambda: self.change_bl_info())
 
+        # self.dark_theme()
         ## SHOW
         #####################################################################
         self.show()
         #####################################################################
+
+    ## set dark theme
+    def dark_theme(self):
+        self.ui.drop_shadow_frame.setStyleSheet("QFrame#drop_shadow_frame{\n"
+                                                "blackground-color:none;\n"
+                                                "border-radius：10px;\n"
+                                                "border-image: url(\"./img/bg2.png\"); \n"
+                                                "}\n"
+                                                "QLabel#label_title{\n"
+                                                "color: rgb(255, 255, 255);\n"
+                                                "padding-left:15px;}"
+                                                )
 
     ## APP EVENTS
     ########################################################################
