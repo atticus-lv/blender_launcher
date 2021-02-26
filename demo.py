@@ -79,14 +79,36 @@ class Ui_MainWindow(object):
         self.horizontalLayout_7.addWidget(self.label_title)
         self.horizontalLayout.addWidget(self.frame_title)
         self.frame_btns = QtWidgets.QFrame(self.title_bar)
-        self.frame_btns.setMaximumSize(QtCore.QSize(50, 16777215))
+        self.frame_btns.setMaximumSize(QtCore.QSize(100, 16777215))
         self.frame_btns.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_btns.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_btns.setObjectName("frame_btns")
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.frame_btns)
-        self.horizontalLayout_3.setContentsMargins(0, 0, 5, 0)
-        self.horizontalLayout_3.setSpacing(0)
+        self.horizontalLayout_3.setContentsMargins(10, 10, 10, 10)
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
+        self.checkBox_theme = QtWidgets.QCheckBox(self.frame_btns)
+        self.checkBox_theme.setMinimumSize(QtCore.QSize(0, 0))
+        self.checkBox_theme.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        self.checkBox_theme.setStyleSheet("QCheckBox {\n"
+"    spacing: 5px;\n"
+"}\n"
+"\n"
+"QCheckBox::indicator {\n"
+"    width: 32px;\n"
+"    height: 32px;\n"
+"}\n"
+"\n"
+"QCheckBox::indicator:unchecked {\n"
+"    image: url(./img/slider.png);\n"
+"}\n"
+"QCheckBox::indicator:checked {\n"
+"    image: url(./img/slider_check.png);\n"
+"}\n"
+"\n"
+"")
+        self.checkBox_theme.setText("")
+        self.checkBox_theme.setObjectName("checkBox_theme")
+        self.horizontalLayout_3.addWidget(self.checkBox_theme)
         self.btn_minimize = QtWidgets.QPushButton(self.frame_btns)
         self.btn_minimize.setMinimumSize(QtCore.QSize(16, 16))
         self.btn_minimize.setMaximumSize(QtCore.QSize(16, 16))
@@ -452,26 +474,26 @@ class Ui_MainWindow(object):
         self.frame_add_btn.setObjectName("frame_add_btn")
         self.verticalLayout_10 = QtWidgets.QVBoxLayout(self.frame_add_btn)
         self.verticalLayout_10.setObjectName("verticalLayout_10")
-        self.list_remove_btn = QtWidgets.QPushButton(self.frame_add_btn)
-        self.list_remove_btn.setMinimumSize(QtCore.QSize(30, 30))
-        self.list_remove_btn.setMaximumSize(QtCore.QSize(30, 30))
-        self.list_remove_btn.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.list_remove_btn.setStyleSheet("QPushButton{\n"
+        self.btn_list_remove = QtWidgets.QPushButton(self.frame_add_btn)
+        self.btn_list_remove.setMinimumSize(QtCore.QSize(30, 30))
+        self.btn_list_remove.setMaximumSize(QtCore.QSize(30, 30))
+        self.btn_list_remove.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.btn_list_remove.setStyleSheet("QPushButton{\n"
 "    border:none;\n"
 "    background-color:orange;\n"
 "}\n"
 "QPushButton:hover{\n"
 "background-color:rgb(255, 220, 0);\n"
 "}")
-        self.list_remove_btn.setText("")
-        self.list_remove_btn.setIconSize(QtCore.QSize(20, 20))
-        self.list_remove_btn.setObjectName("list_remove_btn")
-        self.verticalLayout_10.addWidget(self.list_remove_btn)
-        self.list_refresh_btn = QtWidgets.QPushButton(self.frame_add_btn)
-        self.list_refresh_btn.setMinimumSize(QtCore.QSize(30, 30))
-        self.list_refresh_btn.setMaximumSize(QtCore.QSize(30, 30))
-        self.list_refresh_btn.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.list_refresh_btn.setStyleSheet("QPushButton{\n"
+        self.btn_list_remove.setText("")
+        self.btn_list_remove.setIconSize(QtCore.QSize(20, 20))
+        self.btn_list_remove.setObjectName("btn_list_remove")
+        self.verticalLayout_10.addWidget(self.btn_list_remove)
+        self.btn_list_refresh = QtWidgets.QPushButton(self.frame_add_btn)
+        self.btn_list_refresh.setMinimumSize(QtCore.QSize(30, 30))
+        self.btn_list_refresh.setMaximumSize(QtCore.QSize(30, 30))
+        self.btn_list_refresh.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.btn_list_refresh.setStyleSheet("QPushButton{\n"
 "    border:none;\n"
 "    background-color:orange;\n"
 "    border-radius:15px;\n"
@@ -479,10 +501,10 @@ class Ui_MainWindow(object):
 "QPushButton:hover{\n"
 "background-color:rgb(255, 220, 0);\n"
 "}")
-        self.list_refresh_btn.setText("")
-        self.list_refresh_btn.setIconSize(QtCore.QSize(20, 20))
-        self.list_refresh_btn.setObjectName("list_refresh_btn")
-        self.verticalLayout_10.addWidget(self.list_refresh_btn)
+        self.btn_list_refresh.setText("")
+        self.btn_list_refresh.setIconSize(QtCore.QSize(20, 20))
+        self.btn_list_refresh.setObjectName("btn_list_refresh")
+        self.verticalLayout_10.addWidget(self.btn_list_refresh)
         self.verticalLayout_11.addWidget(self.frame_add_btn)
         self.frame_add_fill = QtWidgets.QFrame(self.frame_pref_side)
         self.frame_add_fill.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -528,7 +550,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):

@@ -56,31 +56,69 @@ class MainWindow(QMainWindow):
         ## ==> SET UI DEFINITIONS
         UIFunctions.uiDefinitions(self)
 
-        # init interface
+        self.ui.checkBox_theme.setCheckState(2)
+        ## set combobox changes event
+        self.ui.comboBox_bl_version.currentTextChanged.connect(lambda: self.change_bl_info())
+
+        ## SHOW
+        #####################################################################
+        self.show()
+        self.unfade(self.ui.drop_shadow_frame, time=500)
+        #####################################################################
+
+        # init interface data
         self.update_list()
         self.change_bl_info()
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
 
-        ## set combobox changes event
-        self.ui.comboBox_bl_version.currentTextChanged.connect(lambda: self.change_bl_info())
+    def theme_state_change(self):
+        state = self.ui.checkBox_theme.isChecked()
+        if state:
+            self.set_theme(qss_file = 'theme/black.qss')
+        else:
+            self.set_theme(qss_file = 'theme/white.qss')
 
-        # self.dark_theme()
-        ## SHOW
-        #####################################################################
-        self.show()
-        #####################################################################
+    def set_theme(self,qss_file):
+        theme = open(qss_file, 'r', encoding='utf-8').read()
+        self.setStyleSheet(theme)
+        self.ui.drop_shadow_frame.setStyleSheet(theme)
+        self.ui.checkBox_theme.setStyleSheet(theme)
 
-    ## set dark theme
-    def dark_theme(self):
-        self.ui.drop_shadow_frame.setStyleSheet("QFrame#drop_shadow_frame{\n"
-                                                "blackground-color:none;\n"
-                                                "border-radius：10px;\n"
-                                                "border-image: url(\"./img/bg2.png\"); \n"
-                                                "}\n"
-                                                "QLabel#label_title{\n"
-                                                "color: rgb(255, 255, 255);\n"
-                                                "padding-left:15px;}"
-                                                )
+        self.ui.btn_minimize.setStyleSheet(theme)
+        self.ui.btn_close.setStyleSheet(theme)
+        self.ui.btn_list_remove.setStyleSheet(theme)
+        self.ui.btn_list_refresh.setStyleSheet(theme)
+        self.ui.btn_preference.setStyleSheet(theme)
+        self.ui.btn_home.setStyleSheet(theme)
+
+        self.ui.comboBox_bl_version.setStyleSheet(theme)
+        self.ui.launch_button.setStyleSheet(theme)
+
+        self.ui.label_title.setStyleSheet(theme)
+
+
+        self.ui.blender_folder_list.setStyleSheet(theme)
+
+    ## fade animaiton
+    def fade(self, widget, time=1000):
+        self.effect = QGraphicsOpacityEffect()
+        widget.setGraphicsEffect(self.effect)
+
+        self.animation = QtCore.QPropertyAnimation(self.effect, b"opacity")
+        self.animation.setDuration(time)
+        self.animation.setStartValue(1)
+        self.animation.setEndValue(0)
+        self.animation.start()
+
+    def unfade(self, widget, time=1000):
+        self.effect = QGraphicsOpacityEffect()
+        widget.setGraphicsEffect(self.effect)
+
+        self.animation = QtCore.QPropertyAnimation(self.effect, b"opacity")
+        self.animation.setDuration(time)
+        self.animation.setStartValue(0)
+        self.animation.setEndValue(1)
+        self.animation.start()
 
     ## APP EVENTS
     ########################################################################

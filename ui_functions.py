@@ -7,7 +7,7 @@ from main import *
 ## ==> GLOBALS
 
 GLOBAL_STATE = 0
-
+THEME = 0
 
 class UIFunctions(MainWindow):
 
@@ -27,6 +27,9 @@ class UIFunctions(MainWindow):
         # APPLY DROPSHADOW TO FRAME
         self.ui.drop_shadow_frame.setGraphicsEffect(self.shadow)
 
+        # theme check
+        self.ui.checkBox_theme.stateChanged.connect(lambda :self.theme_state_change())
+
         # MINIMIZE
         self.ui.btn_minimize.clicked.connect(lambda: self.showMinimized())
 
@@ -40,49 +43,19 @@ class UIFunctions(MainWindow):
         # self.sizegrip.setToolTip("Resize Window")
 
         # DropBlenderFolders
-        # self.ui.blender_folder_list.setAlternatingRowColors(True)
-        self.ui.list_remove_btn.clicked.connect(lambda: self.ui.blender_folder_list.remove_current())
-        self.ui.list_refresh_btn.clicked.connect(lambda: self.update_list())
+        self.ui.blender_folder_list.setAlternatingRowColors(True)
+        self.ui.btn_list_remove.clicked.connect(lambda: self.ui.blender_folder_list.remove_current())
+        self.ui.btn_list_refresh.clicked.connect(lambda: self.update_list())
 
         # set launcher
         self.ui.launch_button.clicked.connect(
             lambda: os.startfile(self.blender_paths[self.ui.comboBox_bl_version.currentIndex()]))
 
         # set icon
-        self.ui.drop_shadow_frame.setStyleSheet("QFrame#drop_shadow_frame{\n"
-                                                "border-radius：10px;\n"
-                                                "border-image: url(\":/img/bg.png\");\n"
-                                                "}")
-        self.ui.comboBox_bl_version.setStyleSheet("    background-color:rgb(255, 170, 0);\n"
-                                                  "    color:white;\n"
-                                                  "    padding:20px;\n"
-                                                  "\n"
-                                                  "    border-top-left-radius:15px;\n"
-                                                  "    border-bottom-left-radius:15px;\n"
-                                                  "    border-top-right-radius:0px;\n"
-                                                  "    border-bottom-right-radius:0px;\n"
-                                                  "}\n"
-                                                  "QComboBox:hover{\n"
-                                                  "    background-color:rgb(255, 220, 0);\n"
-                                                  "    color:white;\n"
-                                                  "}\n"
-                                                  "\n"
-                                                  "QComboBox::drop-down{\n"
-                                                  "    subcontrol-origin: padding;\n"
-                                                  "    subcontrol-position: top right;\n"
-                                                  "    width: 30px;\n"
-                                                  " \n"
-                                                  "    border-top-right-radius: 3px; /* same radius as the QComboBox */\n"
-                                                  "    border-bottom-right-radius: 3px;\n"
-                                                  "}    \n"
-                                                  "\n"
-                                                  "QComboBox::down-arrow {\n"
-                                                  "    border-image: url(:/img/arrow_down.png);\n"
-                                                  "}\n")
         self.ui.btn_preference.setIcon(QIcon(':/img/settings.png'))
         self.ui.btn_home.setIcon(QIcon(':/img/settings.png'))
-        self.ui.list_refresh_btn.setIcon(QIcon(':/img/refresh.png'))
-        self.ui.list_remove_btn.setIcon(QIcon(':/img/del.png'))
+        self.ui.btn_list_refresh.setIcon(QIcon(':/img/refresh.png'))
+        self.ui.btn_list_remove.setIcon(QIcon(':/img/del.png'))
         # set stackedWidget
         self.ui.btn_preference.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_pref))
         self.ui.btn_home.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_home))
@@ -91,6 +64,7 @@ class UIFunctions(MainWindow):
 
     def returnStatus():
         return GLOBAL_STATE
+
 
 
 class DropBlenderFolders(QListWidget):

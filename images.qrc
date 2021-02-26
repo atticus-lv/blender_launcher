@@ -1,9 +1,14 @@
 <RCC>
   <qresource prefix="/" >
     <file>img/bg.png</file>
+    <file>img/bg2.png</file>
     <file>img/settings.png</file>
     <file>img/del.png</file>
     <file>img/refresh.png</file>
     <file>img/arrow_down.png</file>
+    <file>img/slider.png</file>
+    <file>img/slider2.png</file>
+    <file>img/slider_check.png</file>
+    <file>img/slider_check2.png</file>
   </qresource>
 </RCC>
