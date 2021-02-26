@@ -57,7 +57,6 @@ class MainWindow(QMainWindow):
         UIFunctions.uiDefinitions(self)
         # CLOSE
         self.ui.btn_close.clicked.connect(lambda: self.close_window())
-
         # load preference
         self.load_pref()
 
@@ -68,7 +67,6 @@ class MainWindow(QMainWindow):
         #####################################################################
 
         # init interface data
-        self.update_list()
         self.change_bl_info()
 
     # load and sav preference
@@ -77,19 +75,15 @@ class MainWindow(QMainWindow):
             with open('pref.json', 'r') as f:
                 data = json.load(f)
                 # load theme
-                try:
+                if 'theme' in data:
                     theme_state = data["theme"]
                     theme = 0 if theme_state == 'white' else 2
                     self.ui.checkBox_theme.setCheckState(theme)
                     data.pop("theme")
-                except KeyError:
-                    self.save_pref()
-                    self.ui.checkBox_theme.setCheckState(0)
-                    self.set_theme('theme/white.qss')
                 # load blender list item
                 self.ui.blender_folder_list.addItems(data.values())
-        else:
-            self.save_pref()
+        # save
+        self.save_pref()
 
     def save_pref(self):
         dict = {}
@@ -100,7 +94,7 @@ class MainWindow(QMainWindow):
             dict['theme'] = 'dark'
         else:
             dict['theme'] = 'white'
-
+        print(dict)
         try:
             with open('pref.json', 'w') as f:
                 json.dump(dict, f, indent=4)
@@ -114,12 +108,7 @@ class MainWindow(QMainWindow):
     def theme_state_change(self):
         if self.get_theme_state():
             self.set_theme(qss_file='theme/black.qss')
-            with open('pref.json', 'r') as f:
-                data = json.load(f)
-                data['theme'] = 'black'
-                # write theme
-                with open('pref.json', 'w') as f:
-                    json.dump(data, f)
+            self.save_pref()
         else:
             self.set_theme(qss_file='theme/white.qss')
 
@@ -185,9 +174,14 @@ class MainWindow(QMainWindow):
         for i in range(self.ui.blender_folder_list.count()):
             path = self.ui.blender_folder_list.item(i).text()
             bl = Blender(path=path)
-            self.blender_paths.append(bl.path)
-            self.blender_info.append(bl.bl_info)
-            self.ui.comboBox_bl_version.addItem(bl.version)
+            if bl.path:
+                self.blender_paths.append(bl.path)
+                self.blender_info.append(bl.bl_info)
+                self.ui.comboBox_bl_version.addItem(bl.version)
+            else:
+                msg_box = QtWidgets.QMessageBox
+                msg_box.question(self, 'Error', f'There is not "blender.exe" in path:\n{path}',
+                                 msg_box.Ok)
 
     def change_bl_info(self):
         index = self.ui.comboBox_bl_version.currentIndex()

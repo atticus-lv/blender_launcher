@@ -557,7 +557,7 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Blender Launcher"))
         self.label_title.setText(_translate("MainWindow", "Blender Launcher"))
-        self.blender_info.setText(_translate("MainWindow", "Build Time"))
+        self.blender_info.setText(_translate("MainWindow", "Set Your Blender Folder First!"))
         self.launch_button.setText(_translate("MainWindow", "Launch!"))
         self.label_credits.setText(_translate("MainWindow", "By Atticus_Id"))
 from ui_functions import DropBlenderFolders

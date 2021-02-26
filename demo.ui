@@ -629,7 +629,7 @@ QPushButton:hover{
                           <string notr="true">padding:20px</string>
                          </property>
                          <property name="text">
-                          <string>Build Time</string>
+                          <string>Set Your Blender Folder First!</string>
                          </property>
                          <property name="alignment">
                           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>

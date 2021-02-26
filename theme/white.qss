@@ -40,6 +40,38 @@ QComboBox {
   border-bottom-right-radius: 0px;
 }
 
+QComboBox:hover {
+  background-color: rgb(255, 220, 0);
+  color: white;
+}
+
+QComboBox::drop-down {
+  subcontrol-origin: padding;
+  subcontrol-position: top right;
+  width: 30px;
+
+  border-top-right-radius: 3px; /* same radius as the QComboBox */
+  border-bottom-right-radius: 3px;
+}
+
+QComboBox::down-arrow {
+  border-image: url(:/img/arrow_down.png);
+}
+
+QPushButton#launch_button {
+  background-color: rgb(255, 170, 0);
+  color: white;
+
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+QPushButton#launch_button:hover {
+  background-color: rgb(255, 220, 0);
+  color: white;
+}
 
 QPushButton#btn_close {
   border: none;
@@ -144,21 +176,5 @@ QLabel#blender_info {
 }
 
 
-QComboBox:hover {
-  background-color: rgb(255, 220, 0);
-  color: white;
-}
 
-QComboBox::drop-down {
-  subcontrol-origin: padding;
-  subcontrol-position: top right;
-  width: 30px;
-
-  border-top-right-radius: 3px; /* same radius as the QComboBox */
-  border-bottom-right-radius: 3px;
-}
-
-QComboBox::down-arrow {
-  border-image: url(:/img/arrow_down.png);
-}
 

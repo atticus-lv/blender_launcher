@@ -9,6 +9,7 @@ from main import *
 GLOBAL_STATE = 0
 THEME = 0
 
+
 class UIFunctions(MainWindow):
 
     ## ==> UI DEFINITIONS
@@ -27,13 +28,10 @@ class UIFunctions(MainWindow):
         # APPLY DROPSHADOW TO FRAME
         self.ui.drop_shadow_frame.setGraphicsEffect(self.shadow)
 
-        # theme check
-        self.ui.checkBox_theme.stateChanged.connect(lambda :self.theme_state_change())
-
         # MINIMIZE
         self.ui.btn_minimize.clicked.connect(lambda: self.showMinimized())
-
-
+        # theme
+        self.ui.checkBox_theme.stateChanged.connect(lambda: self.theme_state_change())
 
         # ==> CREATE SIZE GRIP TO RESIZE WINDOW
         # self.sizegrip = QSizeGrip(self.ui.frame_grip)
@@ -43,6 +41,8 @@ class UIFunctions(MainWindow):
 
         # DropBlenderFolders
         self.ui.blender_folder_list.setAlternatingRowColors(True)
+        self.ui.blender_folder_list.setDragDropMode(QAbstractItemView.DragDropMode.InternalMove)
+
         self.ui.btn_list_remove.clicked.connect(lambda: self.ui.blender_folder_list.remove_current())
         self.ui.btn_list_refresh.clicked.connect(lambda: self.update_list())
 
@@ -66,9 +66,9 @@ class UIFunctions(MainWindow):
         return GLOBAL_STATE
 
 
-
 class DropBlenderFolders(QListWidget):
     """PROMOTE"""
+
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setAcceptDrops(True)
@@ -77,24 +77,19 @@ class DropBlenderFolders(QListWidget):
         for item in self.selectedItems():
             self.takeItem(self.row(item))
 
-
-
     def get_item_list(self):
         return [self.item(i).text() for i in range(self.count())]
 
     # events
     # drag and drop file
     def dragMoveEvent(self, event):
-        if event.mimeData().hasUrls():
-            event.accept()
-        else:
-            event.ignore()
+        event.accept()
 
     def dragEnterEvent(self, event):
         if event.mimeData().hasUrls():
             event.accept()
         else:
-            event.ignore()
+            super(DropBlenderFolders, self).dragEnterEvent(event)
 
     def dropEvent(self, event):
         if event.mimeData().hasUrls():
@@ -103,6 +98,8 @@ class DropBlenderFolders(QListWidget):
                 paths.append(url.toLocalFile())
             self.addItems(paths)
             event.accept()
+        else:
+            super(DropBlenderFolders, self).dropEvent(event)
 
 
 class Blender():
@@ -122,15 +119,15 @@ class Blender():
     def generate_info_dict(self, path):
         dir = path.replace('\n', '')
 
-        self.path = os.path.join(dir, 'blender.exe')
-        dirname = os.path.basename(os.path.dirname(self.path))
-
         try:
-            version = dirname.split('-')[1]
-        except:
-            version = dirname[7:]
+            self.path = os.path.join(dir, 'blender.exe')
+            dirname = os.path.basename(os.path.dirname(self.path))
 
-        try:
+            try:
+                version = dirname.split('-')[1]
+            except:
+                version = dirname[7:]
+
             self.name = dirname
             self.version = version
             self.build_time = time.ctime(os.stat(self.path).st_mtime)
@@ -142,4 +139,5 @@ class Blender():
                 'version'   : self.version,
             }
         except Exception:
-            pass
+            self.path = None
+            self.bl_info = {}
