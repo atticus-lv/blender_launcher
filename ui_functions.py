@@ -33,8 +33,7 @@ class UIFunctions(MainWindow):
         # MINIMIZE
         self.ui.btn_minimize.clicked.connect(lambda: self.showMinimized())
 
-        # CLOSE
-        self.ui.btn_close.clicked.connect(lambda: self.close())
+
 
         # ==> CREATE SIZE GRIP TO RESIZE WINDOW
         # self.sizegrip = QSizeGrip(self.ui.frame_grip)
@@ -50,7 +49,8 @@ class UIFunctions(MainWindow):
         # set launcher
         self.ui.launch_button.clicked.connect(
             lambda: os.startfile(self.blender_paths[self.ui.comboBox_bl_version.currentIndex()]))
-
+        ## set combobox changes event
+        self.ui.comboBox_bl_version.currentTextChanged.connect(lambda: self.change_bl_info())
         # set icon
         self.ui.btn_preference.setIcon(QIcon(':/img/settings.png'))
         self.ui.btn_home.setIcon(QIcon(':/img/settings.png'))
@@ -69,28 +69,15 @@ class UIFunctions(MainWindow):
 
 class DropBlenderFolders(QListWidget):
     """PROMOTE"""
-
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setAcceptDrops(True)
-        self.load_all()
-
-    def load_all(self):
-        if os.path.exists('pref.json'):
-            with open('pref.json', 'r') as f:
-                data = json.load(f)
-                self.addItems(data.values())
 
     def remove_current(self):
         for item in self.selectedItems():
             self.takeItem(self.row(item))
 
-    def save_all(self):
-        dict = {}
-        for i in range(self.count()):
-            dict[i] = self.item(i).text()
-        with open('pref.json', 'w') as f:
-            json.dump(dict, f, indent=4)
+
 
     def get_item_list(self):
         return [self.item(i).text() for i in range(self.count())]
@@ -134,6 +121,7 @@ class Blender():
 
     def generate_info_dict(self, path):
         dir = path.replace('\n', '')
+
         self.path = os.path.join(dir, 'blender.exe')
         dirname = os.path.basename(os.path.dirname(self.path))
 
@@ -142,13 +130,16 @@ class Blender():
         except:
             version = dirname[7:]
 
-        self.name = dirname
-        self.version = version
-        self.build_time = time.ctime(os.stat(self.path).st_mtime)
-        # dict
-        self.bl_info = {
-            'name'      : self.name,
-            'build_time': self.build_time,
-            'path'      : self.path,
-            'version'   : self.version,
-        }
+        try:
+            self.name = dirname
+            self.version = version
+            self.build_time = time.ctime(os.stat(self.path).st_mtime)
+            # dict
+            self.bl_info = {
+                'name'      : self.name,
+                'build_time': self.build_time,
+                'path'      : self.path,
+                'version'   : self.version,
+            }
+        except Exception:
+            pass

@@ -1,6 +1,6 @@
 import sys
 import platform
-import PyQt5
+import os, json
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTime, QMetaObject, QObject, QPoint, QRect,
@@ -55,10 +55,11 @@ class MainWindow(QMainWindow):
 
         ## ==> SET UI DEFINITIONS
         UIFunctions.uiDefinitions(self)
+        # CLOSE
+        self.ui.btn_close.clicked.connect(lambda: self.close_window())
 
-        self.ui.checkBox_theme.setCheckState(2)
-        ## set combobox changes event
-        self.ui.comboBox_bl_version.currentTextChanged.connect(lambda: self.change_bl_info())
+        # load preference
+        self.load_pref()
 
         ## SHOW
         #####################################################################
@@ -69,16 +70,60 @@ class MainWindow(QMainWindow):
         # init interface data
         self.update_list()
         self.change_bl_info()
-        self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
+
+    # load and sav preference
+    def load_pref(self):
+        if os.path.exists('pref.json'):
+            with open('pref.json', 'r') as f:
+                data = json.load(f)
+                # load theme
+                try:
+                    theme_state = data["theme"]
+                    theme = 0 if theme_state == 'white' else 2
+                    self.ui.checkBox_theme.setCheckState(theme)
+                    data.pop("theme")
+                except KeyError:
+                    self.save_pref()
+                    self.ui.checkBox_theme.setCheckState(0)
+                    self.set_theme('theme/white.qss')
+                # load blender list item
+                self.ui.blender_folder_list.addItems(data.values())
+        else:
+            self.save_pref()
+
+    def save_pref(self):
+        dict = {}
+        for i in range(self.ui.blender_folder_list.count()):
+            dict[i] = self.ui.blender_folder_list.item(i).text()
+
+        if self.get_theme_state():
+            dict['theme'] = 'dark'
+        else:
+            dict['theme'] = 'white'
+
+        try:
+            with open('pref.json', 'w') as f:
+                json.dump(dict, f, indent=4)
+        except Exception:
+            msg_box = QtWidgets.QMessageBox
+            msg_box.question(self, 'Error', 'Can Not Save Preference!', msg_box.Ok)
+
+    def get_theme_state(self):
+        return self.ui.checkBox_theme.isChecked()
 
     def theme_state_change(self):
-        state = self.ui.checkBox_theme.isChecked()
-        if state:
-            self.set_theme(qss_file = 'theme/black.qss')
+        if self.get_theme_state():
+            self.set_theme(qss_file='theme/black.qss')
+            with open('pref.json', 'r') as f:
+                data = json.load(f)
+                data['theme'] = 'black'
+                # write theme
+                with open('pref.json', 'w') as f:
+                    json.dump(data, f)
         else:
-            self.set_theme(qss_file = 'theme/white.qss')
+            self.set_theme(qss_file='theme/white.qss')
 
-    def set_theme(self,qss_file):
+    def set_theme(self, qss_file):
         theme = open(qss_file, 'r', encoding='utf-8').read()
         self.setStyleSheet(theme)
         self.ui.drop_shadow_frame.setStyleSheet(theme)
@@ -95,7 +140,6 @@ class MainWindow(QMainWindow):
         self.ui.launch_button.setStyleSheet(theme)
 
         self.ui.label_title.setStyleSheet(theme)
-
 
         self.ui.blender_folder_list.setStyleSheet(theme)
 
@@ -122,19 +166,22 @@ class MainWindow(QMainWindow):
 
     ## APP EVENTS
     ########################################################################
+    def close_window(self):
+        self.save_pref()
+        self.close()
+
     def mousePressEvent(self, event):
         self.dragPos = event.globalPos()
 
     def update_list(self):
-        # save
-        self.ui.blender_folder_list.save_all()
+        self.save_pref()
         # clear
         self.blender_paths.clear()
         self.ui.blender_folder_list.clear()
         self.ui.comboBox_bl_version.clear()
 
         # load preference
-        self.ui.blender_folder_list.load_all()
+        self.load_pref()
         for i in range(self.ui.blender_folder_list.count()):
             path = self.ui.blender_folder_list.item(i).text()
             bl = Blender(path=path)
