@@ -11,10 +11,10 @@ QCheckBox::indicator {
 }
 
 QCheckBox::indicator:unchecked {
-    image: url(:/img/slider.png);
+    image: url(":/img/slider.png");
 }
 QCheckBox::indicator:checked {
-    image: url(:/img/slider_check.png);
+    image: url(":/img/slider_check.png");
 }
 
 
