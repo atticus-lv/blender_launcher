@@ -15,6 +15,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(960, 600)
+        MainWindow.setStyleSheet("")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setEnabled(True)
         self.centralwidget.setLayoutDirection(QtCore.Qt.LeftToRight)
@@ -22,27 +23,22 @@ class Ui_MainWindow(object):
         self.centralwidget.setStyleSheet("")
         self.centralwidget.setObjectName("centralwidget")
         self.drop_shadow_layout = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.drop_shadow_layout.setContentsMargins(10, 10, 10, 10)
+        self.drop_shadow_layout.setContentsMargins(0, 0, 0, 0)
         self.drop_shadow_layout.setSpacing(0)
         self.drop_shadow_layout.setObjectName("drop_shadow_layout")
         self.drop_shadow_frame = QtWidgets.QFrame(self.centralwidget)
         self.drop_shadow_frame.setStyleSheet("QFrame{\n"
-"blackground-color:none;\n"
 "border-radius：10px;\n"
 "}\n"
 "QFrame#drop_shadow_frame{\n"
-"blackground-color:none;\n"
 "border-radius：10px;\n"
-"border-image: url(\"./img/bg.png\"); \n"
-"}\n"
-"QFrame[theme=\'dark\']{\n"
-"border-image: url(\"./img/bg2.png\"); \n"
+"border-image: url(\"./img/bg.png\");\n"
 "}")
         self.drop_shadow_frame.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.drop_shadow_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.drop_shadow_frame.setObjectName("drop_shadow_frame")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.drop_shadow_frame)
-        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout.setContentsMargins(5, 5, 5, 0)
         self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName("verticalLayout")
         self.title_bar = QtWidgets.QFrame(self.drop_shadow_frame)
@@ -76,7 +72,9 @@ class Ui_MainWindow(object):
         font.setBold(False)
         font.setWeight(50)
         self.label_title.setFont(font)
-        self.label_title.setStyleSheet("color: rgb(57, 57, 57);padding-left:15px;")
+        self.label_title.setStyleSheet("QLabel#label_title{\n"
+"color: rgb(57, 57, 57);\n"
+"padding-left:15px;}")
         self.label_title.setObjectName("label_title")
         self.horizontalLayout_7.addWidget(self.label_title)
         self.horizontalLayout.addWidget(self.frame_title)
@@ -95,7 +93,7 @@ class Ui_MainWindow(object):
         self.btn_minimize.setStyleSheet("QPushButton{\n"
 "    border:none;\n"
 "    border-radius:4px;\n"
-"    background-color:rgb(85, 255, 127);\n"
+"    background-color:rgb(85, 255, 127,255);\n"
 "}\n"
 "QPushButton:hover{\n"
 "    background-color:rgb(85, 255, 127, 150);\n"
@@ -109,7 +107,7 @@ class Ui_MainWindow(object):
         self.btn_close.setStyleSheet("QPushButton{\n"
 "    border:none;\n"
 "    border-radius:4px;\n"
-"    background-color:rgb(255, 0, 0);\n"
+"    background-color:rgb(255, 0, 0,255);\n"
 "}\n"
 "QPushButton:hover{\n"
 "    background-color:rgb(255, 0, 0, 150);\n"
@@ -186,8 +184,10 @@ class Ui_MainWindow(object):
 "    background-color:orange;\n"
 "}")
         self.btn_preference.setText("")
-        icon = QtGui.QIcon.fromTheme("./img/arrow_down.png")
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("."), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_preference.setIcon(icon)
+        self.btn_preference.setCheckable(False)
         self.btn_preference.setObjectName("btn_preference")
         self.horizontalLayout_8.addWidget(self.btn_preference)
         self.horizontalLayout_6.addWidget(self.frame_preference)
@@ -285,8 +285,7 @@ class Ui_MainWindow(object):
 "\n"
 "QComboBox::down-arrow {\n"
 "    border-image: url(./img/arrow_down.png);\n"
-"}\n"
-"")
+"}")
         self.comboBox_bl_version.setEditable(False)
         self.comboBox_bl_version.setCurrentText("")
         self.comboBox_bl_version.setSizeAdjustPolicy(QtWidgets.QComboBox.AdjustToContentsOnFirstShow)
@@ -411,8 +410,23 @@ class Ui_MainWindow(object):
         self.blender_folder_list.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.blender_folder_list.setAcceptDrops(True)
         self.blender_folder_list.setStyleSheet("QListView{\n"
-"border:2 solid gray;\n"
+"border:2 solid orange;\n"
 "border-radius:5px;\n"
+"alternate-background-color:orange;\n"
+"}\n"
+"/* 行与行之间交替颜色不同 */\n"
+"/* setAlternatingRowColors(true); */\n"
+"QListView::item:alternate {\n"
+"    background:#D9FAFF;\n"
+"}\n"
+"QListView::item:selected {\n"
+"    color:white;\n"
+"    background-color:orange;\n"
+"}\n"
+"/* 鼠标县浮在条目上 */\n"
+"QListView::item::hover {\n"
+"    background:rgb(0, 170, 255);\n"
+"    padding:10px;\n"
 "}")
         self.blender_folder_list.setObjectName("blender_folder_list")
         self.horizontalLayout_10.addWidget(self.blender_folder_list)
@@ -495,14 +509,14 @@ class Ui_MainWindow(object):
         self.frame_label_credits.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_label_credits.setObjectName("frame_label_credits")
         self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.frame_label_credits)
-        self.verticalLayout_3.setContentsMargins(15, 0, 0, 0)
+        self.verticalLayout_3.setContentsMargins(10, 0, 0, 0)
         self.verticalLayout_3.setSpacing(0)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
         self.label_credits = QtWidgets.QLabel(self.frame_label_credits)
         font = QtGui.QFont()
         font.setFamily("OPPOSans")
         self.label_credits.setFont(font)
-        self.label_credits.setStyleSheet("color:rgb(170, 170, 170);")
+        self.label_credits.setStyleSheet("QLabel#label_credits{color:rgb(170, 170, 170);}")
         self.label_credits.setObjectName("label_credits")
         self.verticalLayout_3.addWidget(self.label_credits)
         self.horizontalLayout_2.addWidget(self.frame_label_credits)
@@ -511,7 +525,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -522,6 +536,7 @@ class Ui_MainWindow(object):
         self.launch_button.setText(_translate("MainWindow", "Launch!"))
         self.label_credits.setText(_translate("MainWindow", "By Atticus_Id"))
 from ui_functions import DropBlenderFolders
+import images_rc
 
 
 if __name__ == "__main__":

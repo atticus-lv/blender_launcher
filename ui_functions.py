@@ -40,6 +40,7 @@ class UIFunctions(MainWindow):
         # self.sizegrip.setToolTip("Resize Window")
 
         # DropBlenderFolders
+        # self.ui.blender_folder_list.setAlternatingRowColors(True)
         self.ui.list_remove_btn.clicked.connect(lambda: self.ui.blender_folder_list.remove_current())
         self.ui.list_refresh_btn.clicked.connect(lambda: self.update_list())
 
@@ -48,15 +49,46 @@ class UIFunctions(MainWindow):
             lambda: os.startfile(self.blender_paths[self.ui.comboBox_bl_version.currentIndex()]))
 
         # set icon
-        self.ui.btn_preference.setIcon(QIcon('./img/settings.png'))
-        self.ui.btn_home.setIcon(QIcon('./img/settings.png'))
-        self.ui.list_refresh_btn.setIcon(QIcon('./img/refresh.png'))
-        self.ui.list_remove_btn.setIcon(QIcon('./img/del.png'))
+        self.ui.drop_shadow_frame.setStyleSheet("QFrame#drop_shadow_frame{\n"
+                                                "border-radius：10px;\n"
+                                                "border-image: url(\":/img/bg.png\");\n"
+                                                "}")
+        self.ui.comboBox_bl_version.setStyleSheet("    background-color:rgb(255, 170, 0);\n"
+                                                  "    color:white;\n"
+                                                  "    padding:20px;\n"
+                                                  "\n"
+                                                  "    border-top-left-radius:15px;\n"
+                                                  "    border-bottom-left-radius:15px;\n"
+                                                  "    border-top-right-radius:0px;\n"
+                                                  "    border-bottom-right-radius:0px;\n"
+                                                  "}\n"
+                                                  "QComboBox:hover{\n"
+                                                  "    background-color:rgb(255, 220, 0);\n"
+                                                  "    color:white;\n"
+                                                  "}\n"
+                                                  "\n"
+                                                  "QComboBox::drop-down{\n"
+                                                  "    subcontrol-origin: padding;\n"
+                                                  "    subcontrol-position: top right;\n"
+                                                  "    width: 30px;\n"
+                                                  " \n"
+                                                  "    border-top-right-radius: 3px; /* same radius as the QComboBox */\n"
+                                                  "    border-bottom-right-radius: 3px;\n"
+                                                  "}    \n"
+                                                  "\n"
+                                                  "QComboBox::down-arrow {\n"
+                                                  "    border-image: url(:/img/arrow_down.png);\n"
+                                                  "}\n")
+        self.ui.btn_preference.setIcon(QIcon(':/img/settings.png'))
+        self.ui.btn_home.setIcon(QIcon(':/img/settings.png'))
+        self.ui.list_refresh_btn.setIcon(QIcon(':/img/refresh.png'))
+        self.ui.list_remove_btn.setIcon(QIcon(':/img/del.png'))
         # set stackedWidget
         self.ui.btn_preference.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_pref))
         self.ui.btn_home.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_home))
 
-    ## RETURN STATUS IF WINDOWS IS MAXIMIZE OR RESTAURED
+        ## RETURN STATUS IF WINDOWS IS MAXIMIZE OR RESTAURED
+
     def returnStatus():
         return GLOBAL_STATE
 
@@ -84,7 +116,7 @@ class DropBlenderFolders(QListWidget):
         for i in range(self.count()):
             dict[i] = self.item(i).text()
         with open('pref.json', 'w') as f:
-            json.dump(dict, f,indent=4)
+            json.dump(dict, f, indent=4)
 
     def get_item_list(self):
         return [self.item(i).text() for i in range(self.count())]
@@ -134,7 +166,7 @@ class Blender():
         try:
             version = dirname.split('-')[1]
         except:
-            version = dirname
+            version = dirname[7:]
 
         self.name = dirname
         self.version = version

@@ -12,6 +12,9 @@ from PyQt5.QtWidgets import *
 # GUI FILE
 from demo import *
 
+# images
+import images_rc
+
 # IMPORT FUNCTIONS
 from ui_functions import *
 

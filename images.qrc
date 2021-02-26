@@ -1,0 +1,9 @@
+<RCC>
+  <qresource prefix="/" >
+    <file>img/bg.png</file>
+    <file>img/settings.png</file>
+    <file>img/del.png</file>
+    <file>img/refresh.png</file>
+    <file>img/arrow_down.png</file>
+  </qresource>
+</RCC>
