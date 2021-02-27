@@ -36,7 +36,7 @@ class MainWindow(QMainWindow):
     def __init__(self):
         self.set_properties()
         # ui
-        QMainWindow.__init__(self)
+        QMainWindow.__init__(self,None, Qt.WindowStaysOnTopHint)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
