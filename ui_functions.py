@@ -19,6 +19,15 @@ class UIFunctions(MainWindow):
         # MINIMIZE
         self.ui.btn_minimize.clicked.connect(lambda: self.showMinimized())
 
+        """use image instead of effect"""
+        # SET DROPSHADOW WINDOW
+        # self.shadow = QGraphicsDropShadowEffect(self)
+        # self.shadow.setBlurRadius(20)
+        # self.shadow.setXOffset(0)
+        # self.shadow.setYOffset(0)
+        # self.shadow.setColor(QColor(0, 0, 0, 100))
+        # self.ui.drop_shadow_frame.setGraphicsEffect(self.shadow)
+
         # ==> CREATE SIZE GRIP TO RESIZE WINDOW
         # self.sizegrip = QSizeGrip(self.ui.frame_grip)
         # self.sizegrip.setStyleSheet(

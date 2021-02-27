@@ -14,19 +14,19 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(960, 600)
+        MainWindow.resize(947, 600)
         MainWindow.setStyleSheet("")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setEnabled(True)
-        self.centralwidget.setMinimumSize(QtCore.QSize(960, 600))
-        self.centralwidget.setMaximumSize(QtCore.QSize(960, 600))
+        self.centralwidget.setMinimumSize(QtCore.QSize(950, 600))
+        self.centralwidget.setMaximumSize(QtCore.QSize(950, 600))
         self.centralwidget.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.centralwidget.setAutoFillBackground(False)
         self.centralwidget.setStyleSheet("")
         self.centralwidget.setObjectName("centralwidget")
         self.drop_shadow_layout = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.drop_shadow_layout.setContentsMargins(11, 11, 11, 11)
-        self.drop_shadow_layout.setSpacing(7)
+        self.drop_shadow_layout.setContentsMargins(0, 0, 0, 0)
+        self.drop_shadow_layout.setSpacing(0)
         self.drop_shadow_layout.setObjectName("drop_shadow_layout")
         self.drop_shadow_frame = QtWidgets.QFrame(self.centralwidget)
         self.drop_shadow_frame.setStyleSheet("QFrame{\n"
@@ -34,13 +34,13 @@ class Ui_MainWindow(object):
 "}\n"
 "QFrame#drop_shadow_frame{\n"
 "border-radius：10px;\n"
-"border-image:  url(\"./img/bg.png\");\n"
+"border-image: url(\"./img/bg.png\");\n"
 "}")
         self.drop_shadow_frame.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.drop_shadow_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.drop_shadow_frame.setObjectName("drop_shadow_frame")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.drop_shadow_frame)
-        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout.setContentsMargins(20, 20, 20, 20)
         self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName("verticalLayout")
         self.title_bar = QtWidgets.QFrame(self.drop_shadow_frame)

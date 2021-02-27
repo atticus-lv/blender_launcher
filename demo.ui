@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>960</width>
+    <width>947</width>
     <height>600</height>
    </rect>
   </property>
@@ -22,13 +22,13 @@
    </property>
    <property name="minimumSize">
     <size>
-     <width>960</width>
+     <width>950</width>
      <height>600</height>
     </size>
    </property>
    <property name="maximumSize">
     <size>
-     <width>960</width>
+     <width>950</width>
      <height>600</height>
     </size>
    </property>
@@ -46,16 +46,16 @@
      <number>0</number>
     </property>
     <property name="leftMargin">
-     <number>11</number>
+     <number>0</number>
     </property>
     <property name="topMargin">
-     <number>11</number>
+     <number>0</number>
     </property>
     <property name="rightMargin">
-     <number>11</number>
+     <number>0</number>
     </property>
     <property name="bottomMargin">
-     <number>11</number>
+     <number>0</number>
     </property>
     <item>
      <widget class="QFrame" name="drop_shadow_frame">
@@ -79,16 +79,16 @@ border-image: url(&quot;./img/bg.png&quot;);
         <number>0</number>
        </property>
        <property name="leftMargin">
-        <number>0</number>
+        <number>20</number>
        </property>
        <property name="topMargin">
-        <number>0</number>
+        <number>20</number>
        </property>
        <property name="rightMargin">
-        <number>0</number>
+        <number>20</number>
        </property>
        <property name="bottomMargin">
-        <number>0</number>
+        <number>20</number>
        </property>
        <item>
         <widget class="QFrame" name="title_bar">

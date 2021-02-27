@@ -68,22 +68,14 @@ class MainWindow(QMainWindow):
         ## SHOW
         #####################################################################
         self.show()
-        self.unfade(self.ui.drop_shadow_frame, time=500)
+        self.unfade(self.ui.drop_shadow_frame, time=250)
         #####################################################################
-
 
         # init interface data
         self.update_list()
         self.change_bl_info()
-        # SET DROPSHADOW WINDOW
-        self.shadow = QGraphicsDropShadowEffect(self)
-        self.shadow.setBlurRadius(20)
-        self.shadow.setXOffset(0)
-        self.shadow.setYOffset(0)
-        self.shadow.setColor(QColor(0, 0, 0, 100))
 
-        # APPLY DROPSHADOW TO FRAME
-        self.ui.drop_shadow_frame.setGraphicsEffect(self.shadow)
+
 
     # load and sav preference
     def load_pref(self):
@@ -162,7 +154,7 @@ class MainWindow(QMainWindow):
         self.animation.setEndValue(0)
         self.animation.start()
 
-    def unfade(self, widget, time=1000):
+    def unfade(self, widget, time=500):
         self.effect = QGraphicsOpacityEffect()
         widget.setGraphicsEffect(self.effect)
 
@@ -171,6 +163,8 @@ class MainWindow(QMainWindow):
         self.animation.setStartValue(0)
         self.animation.setEndValue(1)
         self.animation.start()
+
+
 
     ## APP EVENTS
     ########################################################################
