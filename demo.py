@@ -34,7 +34,7 @@ class Ui_MainWindow(object):
 "}\n"
 "QFrame#drop_shadow_frame{\n"
 "border-radius：10px;\n"
-"border-image: url(\"./img/bg.png\");\n"
+"border-image:  url(\"./img/bg.png\");\n"
 "}")
         self.drop_shadow_frame.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.drop_shadow_frame.setFrameShadow(QtWidgets.QFrame.Raised)
