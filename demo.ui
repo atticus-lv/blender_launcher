@@ -20,6 +20,18 @@
    <property name="enabled">
     <bool>true</bool>
    </property>
+   <property name="minimumSize">
+    <size>
+     <width>960</width>
+     <height>600</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>960</width>
+     <height>600</height>
+    </size>
+   </property>
    <property name="layoutDirection">
     <enum>Qt::LeftToRight</enum>
    </property>
@@ -160,8 +172,14 @@ border-image: url(&quot;./img/bg.png&quot;);
                  <family>Open Sans</family>
                  <pointsize>14</pointsize>
                  <weight>50</weight>
+                 <italic>false</italic>
                  <bold>false</bold>
+                 <underline>false</underline>
+                 <kerning>true</kerning>
                 </font>
+               </property>
+               <property name="cursor">
+                <cursorShape>SizeAllCursor</cursorShape>
                </property>
                <property name="styleSheet">
                 <string notr="true">QLabel#label_title{
@@ -540,6 +558,88 @@ QPushButton:hover{
                       <property name="frameShadow">
                        <enum>QFrame::Raised</enum>
                       </property>
+                      <layout class="QHBoxLayout" name="horizontalLayout_14">
+                       <property name="leftMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <item>
+                        <widget class="QFrame" name="frame_web_links">
+                         <property name="maximumSize">
+                          <size>
+                           <width>100</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                         <property name="frameShape">
+                          <enum>QFrame::StyledPanel</enum>
+                         </property>
+                         <property name="frameShadow">
+                          <enum>QFrame::Raised</enum>
+                         </property>
+                         <layout class="QVBoxLayout" name="verticalLayout_12">
+                          <property name="leftMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="topMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="bottomMargin">
+                           <number>0</number>
+                          </property>
+                          <item>
+                           <widget class="QPushButton" name="btn_web1">
+                            <property name="text">
+                             <string/>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QPushButton" name="btn_web2">
+                            <property name="text">
+                             <string/>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QPushButton" name="btn_web3">
+                            <property name="text">
+                             <string/>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QPushButton" name="btn_web4">
+                            <property name="text">
+                             <string/>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QFrame" name="frame_5">
+                         <property name="frameShape">
+                          <enum>QFrame::StyledPanel</enum>
+                         </property>
+                         <property name="frameShadow">
+                          <enum>QFrame::Raised</enum>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
                      </widget>
                     </item>
                    </layout>
@@ -622,7 +722,7 @@ QPushButton:hover{
                          <property name="font">
                           <font>
                            <family>Open Sans</family>
-                           <pointsize>8</pointsize>
+                           <pointsize>9</pointsize>
                           </font>
                          </property>
                          <property name="styleSheet">
@@ -1011,6 +1111,21 @@ QPushButton:hover{
                     <enum>QFrame::Raised</enum>
                    </property>
                    <layout class="QHBoxLayout" name="horizontalLayout_9">
+                    <property name="spacing">
+                     <number>0</number>
+                    </property>
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
                     <item>
                      <widget class="QFrame" name="frame">
                       <property name="minimumSize">
@@ -1030,30 +1145,36 @@ QPushButton:hover{
                         <number>0</number>
                        </property>
                        <property name="leftMargin">
-                        <number>2</number>
+                        <number>40</number>
                        </property>
                        <property name="topMargin">
-                        <number>2</number>
+                        <number>0</number>
                        </property>
                        <property name="rightMargin">
-                        <number>2</number>
+                        <number>0</number>
                        </property>
                        <property name="bottomMargin">
-                        <number>2</number>
+                        <number>30</number>
                        </property>
                        <item>
                         <widget class="DropBlenderFolders" name="blender_folder_list">
                          <property name="minimumSize">
                           <size>
-                           <width>0</width>
-                           <height>0</height>
+                           <width>800</width>
+                           <height>400</height>
                           </size>
                          </property>
                          <property name="maximumSize">
                           <size>
-                           <width>16777215</width>
-                           <height>16777215</height>
+                           <width>800</width>
+                           <height>400</height>
                           </size>
+                         </property>
+                         <property name="font">
+                          <font>
+                           <family>Open Sans</family>
+                           <pointsize>10</pointsize>
+                          </font>
                          </property>
                          <property name="acceptDrops">
                           <bool>true</bool>
@@ -1077,7 +1198,23 @@ QListView::item:selected {
 QListView::item::hover {
 	background:rgb(0, 170, 255);
 	padding:10px;
-}</string>
+}
+
+QScrollBar{
+background:blue;
+}
+
+QScrollBar::handle
+{
+    width:10px;
+    background:orange;
+    border-radius:10px;   
+    min-height:20;
+}
+</string>
+                         </property>
+                         <property name="verticalScrollBarPolicy">
+                          <enum>Qt::ScrollBarAsNeeded</enum>
                          </property>
                         </widget>
                        </item>
@@ -1141,8 +1278,23 @@ QListView::item::hover {
                           <enum>QFrame::Raised</enum>
                          </property>
                          <layout class="QVBoxLayout" name="verticalLayout_10">
+                          <property name="spacing">
+                           <number>0</number>
+                          </property>
+                          <property name="leftMargin">
+                           <number>10</number>
+                          </property>
+                          <property name="topMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>10</number>
+                          </property>
+                          <property name="bottomMargin">
+                           <number>0</number>
+                          </property>
                           <item>
-                           <widget class="QPushButton" name="btn_list_remove">
+                           <widget class="RemoveButton" name="btn_list_remove">
                             <property name="minimumSize">
                              <size>
                               <width>30</width>
@@ -1154,6 +1306,9 @@ QListView::item::hover {
                               <width>30</width>
                               <height>30</height>
                              </size>
+                            </property>
+                            <property name="acceptDrops">
+                             <bool>false</bool>
                             </property>
                             <property name="layoutDirection">
                              <enum>Qt::LeftToRight</enum>
@@ -1313,7 +1468,7 @@ background-color:rgb(255, 220, 0);
                <property name="font">
                 <font>
                  <family>OPPOSans</family>
-                 <pointsize>8</pointsize>
+                 <pointsize>6</pointsize>
                 </font>
                </property>
                <property name="styleSheet">
@@ -1340,6 +1495,11 @@ background-color:rgb(255, 220, 0);
   <customwidget>
    <class>DropBlenderFolders</class>
    <extends>QListView</extends>
+   <header location="global">ui_functions</header>
+  </customwidget>
+  <customwidget>
+   <class>RemoveButton</class>
+   <extends>QPushButton</extends>
    <header location="global">ui_functions</header>
   </customwidget>
  </customwidgets>

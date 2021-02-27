@@ -11,11 +11,11 @@ QCheckBox::indicator {
 }
 
 QCheckBox::indicator:unchecked {
-  image: url(:/img/slider2.png);
+  image: url(":/img/slider2.png");
 }
 
 QCheckBox::indicator:checked {
-  image: url(:/img/slider_check2.png);
+  image: url(":/img/slider_check2.png");
 }
 
 
@@ -56,7 +56,7 @@ QComboBox::drop-down {
 }
 
 QComboBox::down-arrow {
-  border-image: url(:/img/arrow_down.png);
+  border-image: url(":/img/arrow_down.png");
 }
 
 

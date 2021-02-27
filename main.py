@@ -17,6 +17,8 @@ import images_rc
 
 # IMPORT FUNCTIONS
 from ui_functions import *
+from qss import dark as dark_theme
+from qss import white as white_theme
 
 
 class MainWindow(QMainWindow):
@@ -55,8 +57,11 @@ class MainWindow(QMainWindow):
 
         ## ==> SET UI DEFINITIONS
         UIFunctions.uiDefinitions(self)
+
         # CLOSE
         self.ui.btn_close.clicked.connect(lambda: self.close_window())
+        # theme
+        self.ui.checkBox_theme.stateChanged.connect(lambda: self.theme_state_change())
         # load preference
         self.load_pref()
 
@@ -66,7 +71,9 @@ class MainWindow(QMainWindow):
         self.unfade(self.ui.drop_shadow_frame, time=500)
         #####################################################################
 
+
         # init interface data
+        self.update_list()
         self.change_bl_info()
 
     # load and sav preference
@@ -79,6 +86,7 @@ class MainWindow(QMainWindow):
                     theme_state = data["theme"]
                     theme = 0 if theme_state == 'white' else 2
                     self.ui.checkBox_theme.setCheckState(theme)
+                    self.set_theme(theme)
                     data.pop("theme")
                 # load blender list item
                 self.ui.blender_folder_list.addItems(data.values())
@@ -86,6 +94,7 @@ class MainWindow(QMainWindow):
         self.save_pref()
 
     def save_pref(self):
+        print('save!')
         dict = {}
         for i in range(self.ui.blender_folder_list.count()):
             dict[i] = self.ui.blender_folder_list.item(i).text()
@@ -94,7 +103,7 @@ class MainWindow(QMainWindow):
             dict['theme'] = 'dark'
         else:
             dict['theme'] = 'white'
-        print(dict)
+
         try:
             with open('pref.json', 'w') as f:
                 json.dump(dict, f, indent=4)
@@ -106,14 +115,14 @@ class MainWindow(QMainWindow):
         return self.ui.checkBox_theme.isChecked()
 
     def theme_state_change(self):
-        if self.get_theme_state():
-            self.set_theme(qss_file='theme/black.qss')
-            self.save_pref()
+        if self.get_theme_state() == 0:
+            self.set_theme(use_dark_theme=False)
         else:
-            self.set_theme(qss_file='theme/white.qss')
+            self.set_theme(use_dark_theme=True)
 
-    def set_theme(self, qss_file):
-        theme = open(qss_file, 'r', encoding='utf-8').read()
+    def set_theme(self, use_dark_theme=False):
+        # use theme
+        theme = dark_theme if use_dark_theme else white_theme
         self.setStyleSheet(theme)
         self.ui.drop_shadow_frame.setStyleSheet(theme)
         self.ui.checkBox_theme.setStyleSheet(theme)
@@ -131,6 +140,7 @@ class MainWindow(QMainWindow):
         self.ui.label_title.setStyleSheet(theme)
 
         self.ui.blender_folder_list.setStyleSheet(theme)
+        self.ui.blender_folder_list.verticalScrollBar().setStyleSheet(theme)
 
     ## fade animaiton
     def fade(self, widget, time=1000):

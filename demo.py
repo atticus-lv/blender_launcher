@@ -18,13 +18,15 @@ class Ui_MainWindow(object):
         MainWindow.setStyleSheet("")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setEnabled(True)
+        self.centralwidget.setMinimumSize(QtCore.QSize(960, 600))
+        self.centralwidget.setMaximumSize(QtCore.QSize(960, 600))
         self.centralwidget.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.centralwidget.setAutoFillBackground(False)
         self.centralwidget.setStyleSheet("")
         self.centralwidget.setObjectName("centralwidget")
         self.drop_shadow_layout = QtWidgets.QHBoxLayout(self.centralwidget)
         self.drop_shadow_layout.setContentsMargins(11, 11, 11, 11)
-        self.drop_shadow_layout.setSpacing(0)
+        self.drop_shadow_layout.setSpacing(7)
         self.drop_shadow_layout.setObjectName("drop_shadow_layout")
         self.drop_shadow_frame = QtWidgets.QFrame(self.centralwidget)
         self.drop_shadow_frame.setStyleSheet("QFrame{\n"
@@ -70,8 +72,12 @@ class Ui_MainWindow(object):
         font.setFamily("Open Sans")
         font.setPointSize(14)
         font.setBold(False)
+        font.setItalic(False)
+        font.setUnderline(False)
         font.setWeight(50)
+        font.setKerning(True)
         self.label_title.setFont(font)
+        self.label_title.setCursor(QtGui.QCursor(QtCore.Qt.SizeAllCursor))
         self.label_title.setStyleSheet("QLabel#label_title{\n"
 "color: rgb(57, 57, 57);\n"
 "padding-left:15px;}")
@@ -229,6 +235,39 @@ class Ui_MainWindow(object):
         self.frame_bg_image.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_bg_image.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_bg_image.setObjectName("frame_bg_image")
+        self.horizontalLayout_14 = QtWidgets.QHBoxLayout(self.frame_bg_image)
+        self.horizontalLayout_14.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_14.setObjectName("horizontalLayout_14")
+        self.frame_web_links = QtWidgets.QFrame(self.frame_bg_image)
+        self.frame_web_links.setMaximumSize(QtCore.QSize(100, 16777215))
+        self.frame_web_links.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_web_links.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_web_links.setObjectName("frame_web_links")
+        self.verticalLayout_12 = QtWidgets.QVBoxLayout(self.frame_web_links)
+        self.verticalLayout_12.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_12.setObjectName("verticalLayout_12")
+        self.btn_web1 = QtWidgets.QPushButton(self.frame_web_links)
+        self.btn_web1.setText("")
+        self.btn_web1.setObjectName("btn_web1")
+        self.verticalLayout_12.addWidget(self.btn_web1)
+        self.btn_web2 = QtWidgets.QPushButton(self.frame_web_links)
+        self.btn_web2.setText("")
+        self.btn_web2.setObjectName("btn_web2")
+        self.verticalLayout_12.addWidget(self.btn_web2)
+        self.btn_web3 = QtWidgets.QPushButton(self.frame_web_links)
+        self.btn_web3.setText("")
+        self.btn_web3.setObjectName("btn_web3")
+        self.verticalLayout_12.addWidget(self.btn_web3)
+        self.btn_web4 = QtWidgets.QPushButton(self.frame_web_links)
+        self.btn_web4.setText("")
+        self.btn_web4.setObjectName("btn_web4")
+        self.verticalLayout_12.addWidget(self.btn_web4)
+        self.horizontalLayout_14.addWidget(self.frame_web_links)
+        self.frame_5 = QtWidgets.QFrame(self.frame_bg_image)
+        self.frame_5.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_5.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_5.setObjectName("frame_5")
+        self.horizontalLayout_14.addWidget(self.frame_5)
         self.horizontalLayout_11.addWidget(self.frame_bg_image)
         self.verticalLayout_6.addWidget(self.frame_launch_middle)
         self.frame_launch_button = QtWidgets.QFrame(self.frame_content_home)
@@ -254,7 +293,7 @@ class Ui_MainWindow(object):
         self.blender_info.setMaximumSize(QtCore.QSize(600, 16777215))
         font = QtGui.QFont()
         font.setFamily("Open Sans")
-        font.setPointSize(8)
+        font.setPointSize(9)
         self.blender_info.setFont(font)
         self.blender_info.setStyleSheet("padding:20px")
         self.blender_info.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
@@ -419,6 +458,8 @@ class Ui_MainWindow(object):
         self.frame_pref_content.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_pref_content.setObjectName("frame_pref_content")
         self.horizontalLayout_9 = QtWidgets.QHBoxLayout(self.frame_pref_content)
+        self.horizontalLayout_9.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_9.setSpacing(0)
         self.horizontalLayout_9.setObjectName("horizontalLayout_9")
         self.frame = QtWidgets.QFrame(self.frame_pref_content)
         self.frame.setMinimumSize(QtCore.QSize(700, 0))
@@ -426,12 +467,16 @@ class Ui_MainWindow(object):
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
         self.horizontalLayout_10 = QtWidgets.QHBoxLayout(self.frame)
-        self.horizontalLayout_10.setContentsMargins(2, 2, 2, 2)
+        self.horizontalLayout_10.setContentsMargins(40, 0, 0, 30)
         self.horizontalLayout_10.setSpacing(0)
         self.horizontalLayout_10.setObjectName("horizontalLayout_10")
         self.blender_folder_list = DropBlenderFolders(self.frame)
-        self.blender_folder_list.setMinimumSize(QtCore.QSize(0, 0))
-        self.blender_folder_list.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        self.blender_folder_list.setMinimumSize(QtCore.QSize(800, 400))
+        self.blender_folder_list.setMaximumSize(QtCore.QSize(800, 400))
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        font.setPointSize(10)
+        self.blender_folder_list.setFont(font)
         self.blender_folder_list.setAcceptDrops(True)
         self.blender_folder_list.setStyleSheet("QListView{\n"
 "border:2 solid orange;\n"
@@ -451,7 +496,21 @@ class Ui_MainWindow(object):
 "QListView::item::hover {\n"
 "    background:rgb(0, 170, 255);\n"
 "    padding:10px;\n"
-"}")
+"}\n"
+"\n"
+"QScrollBar{\n"
+"background:blue;\n"
+"}\n"
+"\n"
+"QScrollBar::handle\n"
+"{\n"
+"    width:10px;\n"
+"    background:orange;\n"
+"    border-radius:10px;   \n"
+"    min-height:20;\n"
+"}\n"
+"")
+        self.blender_folder_list.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
         self.blender_folder_list.setObjectName("blender_folder_list")
         self.horizontalLayout_10.addWidget(self.blender_folder_list)
         self.horizontalLayout_9.addWidget(self.frame)
@@ -473,10 +532,13 @@ class Ui_MainWindow(object):
         self.frame_add_btn.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_add_btn.setObjectName("frame_add_btn")
         self.verticalLayout_10 = QtWidgets.QVBoxLayout(self.frame_add_btn)
+        self.verticalLayout_10.setContentsMargins(10, 0, 10, 0)
+        self.verticalLayout_10.setSpacing(0)
         self.verticalLayout_10.setObjectName("verticalLayout_10")
-        self.btn_list_remove = QtWidgets.QPushButton(self.frame_add_btn)
+        self.btn_list_remove = RemoveButton(self.frame_add_btn)
         self.btn_list_remove.setMinimumSize(QtCore.QSize(30, 30))
         self.btn_list_remove.setMaximumSize(QtCore.QSize(30, 30))
+        self.btn_list_remove.setAcceptDrops(False)
         self.btn_list_remove.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.btn_list_remove.setStyleSheet("QPushButton{\n"
 "    border:none;\n"
@@ -539,7 +601,7 @@ class Ui_MainWindow(object):
         self.label_credits = QtWidgets.QLabel(self.frame_label_credits)
         font = QtGui.QFont()
         font.setFamily("OPPOSans")
-        font.setPointSize(8)
+        font.setPointSize(6)
         self.label_credits.setFont(font)
         self.label_credits.setStyleSheet("QLabel#label_credits{color:rgb(170, 170, 170);}")
         self.label_credits.setObjectName("label_credits")
@@ -560,7 +622,7 @@ class Ui_MainWindow(object):
         self.blender_info.setText(_translate("MainWindow", "Set Your Blender Folder First!"))
         self.launch_button.setText(_translate("MainWindow", "Launch!"))
         self.label_credits.setText(_translate("MainWindow", "By Atticus_Id"))
-from ui_functions import DropBlenderFolders
+from ui_functions import DropBlenderFolders, RemoveButton
 import images_rc
 
 
