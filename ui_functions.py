@@ -16,16 +16,6 @@ class UIFunctions(MainWindow):
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
 
-        # SET DROPSHADOW WINDOW
-        self.shadow = QGraphicsDropShadowEffect(self)
-        self.shadow.setBlurRadius(20)
-        self.shadow.setXOffset(0)
-        self.shadow.setYOffset(0)
-        self.shadow.setColor(QColor(0, 0, 0, 100))
-
-        # APPLY DROPSHADOW TO FRAME
-        self.ui.drop_shadow_frame.setGraphicsEffect(self.shadow)
-
         # MINIMIZE
         self.ui.btn_minimize.clicked.connect(lambda: self.showMinimized())
 

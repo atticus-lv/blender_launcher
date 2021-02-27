@@ -75,6 +75,15 @@ class MainWindow(QMainWindow):
         # init interface data
         self.update_list()
         self.change_bl_info()
+        # SET DROPSHADOW WINDOW
+        self.shadow = QGraphicsDropShadowEffect(self)
+        self.shadow.setBlurRadius(20)
+        self.shadow.setXOffset(0)
+        self.shadow.setYOffset(0)
+        self.shadow.setColor(QColor(0, 0, 0, 100))
+
+        # APPLY DROPSHADOW TO FRAME
+        self.ui.drop_shadow_frame.setGraphicsEffect(self.shadow)
 
     # load and sav preference
     def load_pref(self):
@@ -123,7 +132,7 @@ class MainWindow(QMainWindow):
     def set_theme(self, use_dark_theme=False):
         # use theme
         theme = dark_theme if use_dark_theme else white_theme
-        self.setStyleSheet(theme)
+        # self.setStyleSheet(theme)
         self.ui.drop_shadow_frame.setStyleSheet(theme)
         self.ui.checkBox_theme.setStyleSheet(theme)
 
