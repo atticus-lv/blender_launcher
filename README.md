@@ -1,6 +1,8 @@
 # Blender Launcher
 
 > A modern launcher for different blender version
+>
+> Demo Video: https://www.bilibili.com/video/BV1Hp4y1H7YP
 
 ### Feature 1.0.5
 
