@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(947, 600)
+        MainWindow.resize(950, 600)
         MainWindow.setStyleSheet("")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setEnabled(True)
@@ -368,7 +368,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_8.setContentsMargins(0, 0, 5, 0)
         self.verticalLayout_8.setSpacing(0)
         self.verticalLayout_8.setObjectName("verticalLayout_8")
-        self.launch_button = QtWidgets.QPushButton(self.frame_launc_button_combobox)
+        self.launch_button = DropOpenFile(self.frame_launc_button_combobox)
         self.launch_button.setMinimumSize(QtCore.QSize(0, 100))
         self.launch_button.setMaximumSize(QtCore.QSize(120, 100))
         font = QtGui.QFont()
@@ -377,6 +377,7 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.launch_button.setFont(font)
+        self.launch_button.setAcceptDrops(True)
         self.launch_button.setStyleSheet("QPushButton{\n"
 "    color:white;\n"
 "    background-color:rgb(255, 170, 0);\n"
@@ -622,7 +623,7 @@ class Ui_MainWindow(object):
         self.blender_info.setText(_translate("MainWindow", "Set Your Blender Folder First!"))
         self.launch_button.setText(_translate("MainWindow", "Launch!"))
         self.label_credits.setText(_translate("MainWindow", "By Atticus_Id"))
-from ui_functions import DropBlenderFolders, RemoveButton
+from ui_functions import DropBlenderFolders, DropOpenFile, RemoveButton
 import images_rc
 
 

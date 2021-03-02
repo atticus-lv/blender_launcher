@@ -1,4 +1,6 @@
+# coding: UTF-8
 import sys
+import subprocess
 import platform
 import os, json
 
@@ -17,8 +19,11 @@ import images_rc
 
 # IMPORT FUNCTIONS
 from ui_functions import *
+
 from qss import dark as dark_theme
 from qss import white as white_theme
+
+from utils.blender_info import *
 
 
 class MainWindow(QMainWindow):
@@ -36,7 +41,8 @@ class MainWindow(QMainWindow):
     def __init__(self):
         self.set_properties()
         # ui
-        QMainWindow.__init__(self,None, Qt.WindowStaysOnTopHint)
+        QMainWindow.__init__(self, None)
+        # QMainWindow.__init__(self, None, Qt.WindowStaysOnTopHint) # keep on top
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
@@ -62,6 +68,8 @@ class MainWindow(QMainWindow):
         self.ui.btn_close.clicked.connect(lambda: self.close_window())
         # theme
         self.ui.checkBox_theme.stateChanged.connect(lambda: self.theme_state_change())
+
+        self.ui.launch_button.itemDropped.connect(lambda: self.load_file_by_drop())
         # load preference
         self.load_pref()
 
@@ -75,7 +83,22 @@ class MainWindow(QMainWindow):
         self.update_list()
         self.change_bl_info()
 
+    def load_file_by_drop(self):
+        file = self.ui.launch_button.file
+        blender = self.blender_paths[self.ui.comboBox_bl_version.currentIndex()]
 
+        try:
+            file = self.ui.launch_button.file
+            filename = os.path.basename(file)
+            dir = os.path.dirname(file)
+            cmd1 = f'cd {dir}'
+            cmd2 = f'"{blender}" {filename}'
+
+            cmd = cmd1 + " & " + cmd2
+            os.system(cmd)
+        except Exception as e:
+            msg_box = QtWidgets.QMessageBox
+            msg_box.question(self, 'Error', 'Can not Open File', msg_box.Ok)
 
     # load and sav preference
     def load_pref(self):
@@ -163,8 +186,6 @@ class MainWindow(QMainWindow):
         self.animation.setStartValue(0)
         self.animation.setEndValue(1)
         self.animation.start()
-
-
 
     ## APP EVENTS
     ########################################################################

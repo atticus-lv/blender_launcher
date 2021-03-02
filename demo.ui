@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>947</width>
+    <width>950</width>
     <height>600</height>
    </rect>
   </property>
@@ -896,7 +896,7 @@ QComboBox::down-arrow {
                         <number>0</number>
                        </property>
                        <item>
-                        <widget class="QPushButton" name="launch_button">
+                        <widget class="DropOpenFile" name="launch_button">
                          <property name="minimumSize">
                           <size>
                            <width>0</width>
@@ -916,6 +916,9 @@ QComboBox::down-arrow {
                            <weight>75</weight>
                            <bold>true</bold>
                           </font>
+                         </property>
+                         <property name="acceptDrops">
+                          <bool>true</bool>
                          </property>
                          <property name="styleSheet">
                           <string notr="true">QPushButton{
@@ -1499,6 +1502,11 @@ background-color:rgb(255, 220, 0);
   </customwidget>
   <customwidget>
    <class>RemoveButton</class>
+   <extends>QPushButton</extends>
+   <header location="global">ui_functions</header>
+  </customwidget>
+  <customwidget>
+   <class>DropOpenFile</class>
    <extends>QPushButton</extends>
    <header location="global">ui_functions</header>
   </customwidget>

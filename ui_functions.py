@@ -1,6 +1,7 @@
 import os
 import time
 import json
+
 ## ==> GUI FILE
 from main import *
 
@@ -62,10 +63,33 @@ class UIFunctions(MainWindow):
     def returnStatus():
         return GLOBAL_STATE
 
-class RemoveButton(QPushButton):
-    def __init__(self,parent =None):
+
+class DropOpenFile(QPushButton):
+    itemDropped = QtCore.pyqtSignal()
+    def __init__(self, parent=None):
         super().__init__(parent)
 
+
+    def dragMoveEvent(self, event):
+        event.accept()
+
+    def dragEnterEvent(self, event):
+        if event.mimeData().hasUrls():
+            event.accept()
+
+    def dropEvent(self, event):
+        self.file = None
+        if event.mimeData().hasUrls():
+            for url in event.mimeData().urls():
+                if url.toLocalFile().endswith('.blend'):
+                    self.file = url.toLocalFile()
+                    self.itemDropped.emit()
+                    event.accept()
+
+
+class RemoveButton(QPushButton):
+    def __init__(self, parent=None):
+        super().__init__(parent)
 
     def dragEnterEvent(self, event):
         event.setDropAction(Qt.MoveAction)
@@ -75,9 +99,11 @@ class RemoveButton(QPushButton):
         event.setDropAction(Qt.MoveAction)
         event.accept()
 
+
 # promote
 class DropBlenderFolders(QListWidget):
     """PROMOTE"""
+    update_list = QtCore.pyqtSignal()
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -121,7 +147,7 @@ class DropBlenderFolders(QListWidget):
         """关闭edit"""
         if self.edited_item and self.isPersistentEditorOpen(self.edited_item):
             self.closePersistentEditor(self.edited_item)
-
+            self.update_list.emit()
 
     def remove_current(self):
         for item in self.selectedItems():
@@ -163,8 +189,9 @@ class DropBlenderFolders(QListWidget):
             elided_text = fm.elidedText(
                 self.placeholder_text, QtCore.Qt.ElideLeft, self.viewport().width()
             )
-            painter.drawText(self.viewport().rect(), QtCore.Qt.AlignCenter | QtCore.Qt.AlignBottom , elided_text)
+            painter.drawText(self.viewport().rect(), QtCore.Qt.AlignCenter | QtCore.Qt.AlignBottom, elided_text)
             painter.restore()
+
     # EVENTS
     ########################################
     def dragMoveEvent(self, event):
@@ -186,43 +213,6 @@ class DropBlenderFolders(QListWidget):
         else:
             super(DropBlenderFolders, self).dropEvent(event)
 
+        self.update_list.emit()
+
 # utils
-class Blender():
-    """
-    :parm bl_info:{
-                    'name'      : self.name,
-                    'build_time': self.build_time,
-                    'path'      : self.path,
-                    'version'   : self.version,
-                    }
-    """
-
-    def __init__(self, path):
-        self.bl_info = {}
-        self.generate_info_dict(path)
-
-    def generate_info_dict(self, path):
-        dir = path.replace('\n', '')
-
-        try:
-            self.path = os.path.join(dir, 'blender.exe')
-            dirname = os.path.basename(os.path.dirname(self.path))
-
-            try:
-                version = dirname.split('-')[1]
-            except:
-                version = dirname[7:]
-
-            self.name = dirname
-            self.version = version
-            self.build_time = time.ctime(os.stat(self.path).st_mtime)
-            # dict
-            self.bl_info = {
-                'name'      : self.name,
-                'build_time': self.build_time,
-                'path'      : self.path,
-                'version'   : self.version,
-            }
-        except Exception:
-            self.path = None
-            self.bl_info = {}
