@@ -99,7 +99,6 @@ class RemoveButton(QPushButton):
         event.setDropAction(Qt.MoveAction)
         event.accept()
 
-
 # promote
 class DropBlenderFolders(QListWidget):
     """PROMOTE"""

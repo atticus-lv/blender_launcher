@@ -68,8 +68,10 @@ class MainWindow(QMainWindow):
         self.ui.btn_close.clicked.connect(lambda: self.close_window())
         # theme
         self.ui.checkBox_theme.stateChanged.connect(lambda: self.theme_state_change())
-
+        # drop to load file
         self.ui.launch_button.itemDropped.connect(lambda: self.load_file_by_drop())
+        # folder list auto save with drop
+        self.ui.blender_folder_list.update_list.connect(lambda: self.update_list())
         # load preference
         self.load_pref()
 
