@@ -510,7 +510,7 @@ QPushButton:hover{
                          </property>
                          <property name="icon">
                           <iconset>
-                           <normaloff>.</normaloff>.</iconset>
+                           <normaloff>blender_launcher</normaloff>blender_launcher</iconset>
                          </property>
                          <property name="checkable">
                           <bool>false</bool>
@@ -1095,7 +1095,7 @@ QPushButton:hover{
                          </property>
                          <property name="icon">
                           <iconset theme="./img/arrow_down.png">
-                           <normaloff>.</normaloff>.</iconset>
+                           <normaloff>blender_launcher</normaloff>blender_launcher</iconset>
                          </property>
                         </widget>
                        </item>
@@ -1474,7 +1474,7 @@ background-color:rgb(255, 220, 0);
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="images.qrc"/>
+  <include location="blender_launcher/images.qrc"/>
  </resources>
  <connections/>
 </ui>

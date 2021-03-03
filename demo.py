@@ -215,7 +215,7 @@ class Ui_MainWindow(object):
 "}")
         self.btn_preference.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("."), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("blender_launcher"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_preference.setIcon(icon)
         self.btn_preference.setCheckable(False)
         self.btn_preference.setObjectName("btn_preference")
