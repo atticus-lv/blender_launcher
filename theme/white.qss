@@ -130,9 +130,6 @@ QPushButton#btn_list_refresh {
   border-radius: 15px;
 }
 
-QPushButton#btn_list_refresh:hover {
-  background-color: rgb(255, 220, 0);
-}
 
 /*
 list

@@ -126,15 +126,7 @@ QPushButton#btn_list_remove:hover {
   background-color: rgb(255, 220, 0);
 }
 
-QPushButton#btn_list_refresh {
-  border: none;
-  background-color: #55B0FF;
-  border-radius: 15px;
-}
 
-QPushButton#btn_list_refresh:hover {
-  background-color: rgb(255, 220, 0);
-}
 
 
 QListView#blender_folder_list {

@@ -1,8 +1,7 @@
 import PyQt5
 from PyQt5.QtWidgets import *
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTime, QMetaObject, QObject, QPoint, QRect,
-                          QSize, QTime, QUrl, Qt, QEvent)
+from PyQt5.QtCore import Qt
 
 class RemoveButton(QPushButton):
     update_list = QtCore.pyqtSignal()

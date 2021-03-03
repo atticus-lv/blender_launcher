@@ -157,7 +157,7 @@ class MainWindow(QMainWindow):
         self.ui.btn_minimize.setStyleSheet(theme)
         self.ui.btn_close.setStyleSheet(theme)
         self.ui.btn_list_remove.setStyleSheet(theme)
-        self.ui.btn_list_refresh.setStyleSheet(theme)
+
         self.ui.btn_preference.setStyleSheet(theme)
         self.ui.btn_home.setStyleSheet(theme)
 

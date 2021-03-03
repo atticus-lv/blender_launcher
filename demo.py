@@ -527,7 +527,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_11.setObjectName("verticalLayout_11")
         self.frame_add_btn = QtWidgets.QFrame(self.frame_pref_side)
         self.frame_add_btn.setMinimumSize(QtCore.QSize(50, 50))
-        self.frame_add_btn.setMaximumSize(QtCore.QSize(50, 120))
+        self.frame_add_btn.setMaximumSize(QtCore.QSize(50, 50))
         self.frame_add_btn.setStyleSheet("")
         self.frame_add_btn.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_add_btn.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -552,22 +552,6 @@ class Ui_MainWindow(object):
         self.btn_list_remove.setIconSize(QtCore.QSize(20, 20))
         self.btn_list_remove.setObjectName("btn_list_remove")
         self.verticalLayout_10.addWidget(self.btn_list_remove)
-        self.btn_list_refresh = QtWidgets.QPushButton(self.frame_add_btn)
-        self.btn_list_refresh.setMinimumSize(QtCore.QSize(30, 30))
-        self.btn_list_refresh.setMaximumSize(QtCore.QSize(30, 30))
-        self.btn_list_refresh.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.btn_list_refresh.setStyleSheet("QPushButton{\n"
-"    border:none;\n"
-"    background-color:orange;\n"
-"    border-radius:15px;\n"
-"}\n"
-"QPushButton:hover{\n"
-"background-color:rgb(255, 220, 0);\n"
-"}")
-        self.btn_list_refresh.setText("")
-        self.btn_list_refresh.setIconSize(QtCore.QSize(20, 20))
-        self.btn_list_refresh.setObjectName("btn_list_refresh")
-        self.verticalLayout_10.addWidget(self.btn_list_refresh)
         self.verticalLayout_11.addWidget(self.frame_add_btn)
         self.frame_add_fill = QtWidgets.QFrame(self.frame_pref_side)
         self.frame_add_fill.setFrameShape(QtWidgets.QFrame.StyledPanel)

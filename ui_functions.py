@@ -43,8 +43,6 @@ class UIFunctions(MainWindow):
         self.ui.btn_list_remove.setAcceptDrops(True)
         self.ui.btn_list_remove.clicked.connect(lambda: self.remove_list())
 
-        self.ui.btn_list_refresh.clicked.connect(lambda: self.update_list())
-
         # set launcher
         self.ui.launch_button.clicked.connect(
             lambda: os.startfile(self.blender_paths[self.ui.comboBox_bl_version.currentIndex()]))
@@ -53,7 +51,6 @@ class UIFunctions(MainWindow):
         # set icon
         self.ui.btn_preference.setIcon(QIcon(':/img/settings.png'))
         self.ui.btn_home.setIcon(QIcon(':/img/settings.png'))
-        self.ui.btn_list_refresh.setIcon(QIcon(':/img/refresh.png'))
         self.ui.btn_list_remove.setIcon(QIcon(':/img/del.png'))
         # set stackedWidget
         self.ui.btn_preference.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_pref))
