@@ -20,8 +20,8 @@ import images_rc
 # IMPORT FUNCTIONS
 from ui_functions import *
 
-from qss import dark as dark_theme
-from qss import white as white_theme
+from theme.qss import dark as dark_theme
+from theme.qss import white as white_theme
 
 from utils.blender_info import *
 
@@ -72,6 +72,7 @@ class MainWindow(QMainWindow):
         self.ui.launch_button.itemDropped.connect(lambda: self.load_file_by_drop())
         # folder list auto save with drop
         self.ui.blender_folder_list.update_list.connect(lambda: self.update_list())
+        self.ui.btn_list_remove.update_list.connect(lambda: self.remove_list())
         # load preference
         self.load_pref()
 
@@ -197,6 +198,10 @@ class MainWindow(QMainWindow):
 
     def mousePressEvent(self, event):
         self.dragPos = event.globalPos()
+
+    def remove_list(self):
+        self.ui.blender_folder_list.remove_current()
+        self.update_list()
 
     def update_list(self):
         self.save_pref()

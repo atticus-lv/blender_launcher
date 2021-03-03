@@ -1498,17 +1498,17 @@ background-color:rgb(255, 220, 0);
   <customwidget>
    <class>DropBlenderFolders</class>
    <extends>QListView</extends>
-   <header location="global">ui_functions</header>
+   <header location="global">promote_widgets/list_blender_folders</header>
   </customwidget>
   <customwidget>
    <class>RemoveButton</class>
    <extends>QPushButton</extends>
-   <header location="global">ui_functions</header>
+   <header location="global">promote_widgets/btn_remove_item_list</header>
   </customwidget>
   <customwidget>
    <class>DropOpenFile</class>
    <extends>QPushButton</extends>
-   <header location="global">ui_functions</header>
+   <header location="global">promote_widgets/btn_launch_drop</header>
   </customwidget>
  </customwidgets>
  <resources>

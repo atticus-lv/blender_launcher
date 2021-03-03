@@ -623,7 +623,9 @@ class Ui_MainWindow(object):
         self.blender_info.setText(_translate("MainWindow", "Set Your Blender Folder First!"))
         self.launch_button.setText(_translate("MainWindow", "Launch!"))
         self.label_credits.setText(_translate("MainWindow", "By Atticus_Id"))
-from ui_functions import DropBlenderFolders, DropOpenFile, RemoveButton
+from promote_widgets.btn_launch_drop import DropOpenFile
+from promote_widgets.btn_remove_item_list import RemoveButton
+from promote_widgets.list_blender_folders import DropBlenderFolders
 import images_rc
 
 
